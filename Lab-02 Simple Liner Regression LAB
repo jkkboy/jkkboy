@@ -1,0 +1,30 @@
+import tensorflow as tf         # 텐서플로우 실행
+import numpy as np              # numpy 실행
+tf.enable_eager_execution()     # 즉시 실행(과정 간소화 효과)
+
+# Data
+x_data = [1, 2, 3, 4, 5]        # X데이터 입력
+y_data = [1, 2, 3, 4, 5]        # Y데이터 입력
+
+# W, b initialize
+W = tf.Variable(2.9)            # 임의의 초기값을 2.9로 정함 
+b = tf.Variable(0.5)            # 임의의 초기값을 2.9로 정함
+
+# W, b update
+for i in range(100):            # i는 0부터 100까지 변해감
+    # Gradient descent
+    with tf.GradientTape() as tape:            # hypothesis와 cost의 변화들을 tape에 기록
+        hypothesis = W * x_data + b
+        cost = tf.reduce_mean(tf.square(hypothesis - y_data))
+    W_grad, b_grad = tape.gradient(cost, [W, b])            # tape에 기록된 gradient(cost, w, b)를 출력
+    W.assign_sub(learning_rate * W_grad)                    # 뺀 값을 그 값으로 도출(-=) <-값을 Learning_rate만큼 반영
+    b.assign_sub(learning_rate * b_grad) 
+    if i % 10 == 0:                                         # i 값이 10의 배수일 때마다 출력.(양을 줄이기 위해)
+      print("{:5}|{:10.4f}|{:10.4f}|{:10.6f}".format(i, W.numpy(), b.numpy(), cost))
+
+print()
+
+# predict
+print(W * 5 + b)                # X값에 5 대입 -> Y값이 잘 출력되는지, 위의 과정들이 잘 됐는지 확인
+print(W * 2.5 + b)              # X값에 2.5 대입
+
