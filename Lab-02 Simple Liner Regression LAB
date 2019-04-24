@@ -8,7 +8,7 @@ y_data = [1, 2, 3, 4, 5]        # Y데이터 입력
 
 # W, b initialize
 W = tf.Variable(2.9)            # 임의의 초기값을 2.9로 정함 
-b = tf.Variable(0.5)            # 임의의 초기값을 2.9로 정함
+b = tf.Variable(0.5)            # 임의의 초기값을 0.5로 정함
 
 # W, b update
 for i in range(100):            # i는 0부터 100까지 변해감
