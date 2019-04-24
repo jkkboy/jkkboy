@@ -11,7 +11,7 @@ W = tf.Variable(2.9)            # 임의의 초기값을 2.9로 정함
 b = tf.Variable(0.5)            # 임의의 초기값을 0.5로 정함
 
 # W, b update
-for i in range(100):            # i는 0부터 100까지 변해감
+for i in range(100):            # 100번 
     # Gradient descent
     with tf.GradientTape() as tape:            # hypothesis와 cost의 변화들을 tape에 기록
         hypothesis = W * x_data + b
